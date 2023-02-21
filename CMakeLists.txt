@@ -27,7 +27,7 @@ include(cmake/CodeCoverage.cmake)
 option(ENABLE_CODE_COVERAGE "enable code coverage" False)
 
 if (ENABLE_CODE_COVERAGE)
-  message(INFO "Code coverage enabled")
+  message(STATUS "Code coverage enabled")
   append_coverage_compiler_flags()
 
   add_custom_command(
