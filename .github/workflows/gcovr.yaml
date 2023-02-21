@@ -8,6 +8,11 @@ jobs:
     steps:
       - name: Check out this repository
         uses: actions/checkout@v3.2.0
+      
+      - name: Install dependencies
+        uses: lyricwulf/abc@v1.2.0
+        with:
+          linux: check
 
       - name: Build and test this project
         run: |
