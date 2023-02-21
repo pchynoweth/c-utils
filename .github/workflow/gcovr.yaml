@@ -1,0 +1,19 @@
+name: Running Code Coverage
+
+on: [push, pull_request]
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v3.2.0
+
+      - name: Build and test this project
+        run: |
+          cmake . -B build -DENABLE_CODE_COVERAGE=True
+          cmake --build build
+          ctest --test-dir build
+
+      - name: Generate a code coverage report
+        uses: threeal/gcovr-action@latest

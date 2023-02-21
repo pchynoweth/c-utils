@@ -24,7 +24,7 @@ include(CheckTypeSize)
 include(cmake/CheckTest.cmake)
 include(cmake/CodeCoverage.cmake)
 
-option(ENABLE_CODE_COVERAGE "enable code coverage" FALSE)
+option(ENABLE_CODE_COVERAGE "enable code coverage" False)
 
 if (ENABLE_CODE_COVERAGE)
   message(INFO "Code coverage enabled")
