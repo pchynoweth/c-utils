@@ -55,6 +55,7 @@ cutils_heap_t* cutils_heap_create(size_t elem_size, cutils_cmp_t cmp) {
 }
 
 void cutils_heap_free(cutils_heap_t* heap) {
+    free(heap->data);
     free(heap);
 }
 
@@ -66,7 +67,9 @@ size_t cutils_heap_size(cutils_heap_t const* heap) {
 void cutils_heap_push(cutils_heap_t* heap, void* elem) {
     if (heap->capacity == heap->size) {
         heap->capacity = (heap->capacity) ? heap->capacity * 2 : 8;
-        heap->data = realloc(heap->data, heap->elem_size * heap->capacity);
+        void* data = realloc(heap->data, heap->elem_size * heap->capacity);
+        if (!data) abort();
+        heap->data = data;
     }
 
     memcpy(

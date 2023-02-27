@@ -20,7 +20,7 @@ function(make_gtest_test NAME)
     include_directories(${CHECK_INCLUDE_DIRS})
 
     add_executable(${NAME} ${MAKE_GTEST_TEST_SOURCES})
-    target_link_libraries(${NAME} gtest_main)
+    target_link_libraries(${NAME} GTest::gmock_main)
 
     add_test(NAME ${NAME} COMMAND ${NAME})
 endfunction()

@@ -7,13 +7,15 @@
 
 cutils_heap_t* heap = NULL;
 
-int cmp(int const* lhs, int const* rhs) {
-    return *lhs - *rhs;
+static int cmp(void const* a, void const* b) {
+    int l = *(int *)a;
+    int r = *(int *)b;
+    return l < r ? -1 : l > r ? 1 : 0;
 }
 
 void setup(void)
 {
-    heap = cutils_heap_create(sizeof(int), (cutils_cmp_t)cmp);
+    heap = cutils_heap_create(sizeof(int), cmp);
 }
 
 void teardown(void)
@@ -72,7 +74,6 @@ Suite * heap_suite(void)
 {
     Suite *s;
     TCase *tc_core;
-    //TCase *tc_limits;
 
     s = suite_create("Heap");
 
@@ -83,13 +84,6 @@ Suite * heap_suite(void)
     tcase_add_test(tc_core, test_heap_size);
     tcase_add_test(tc_core, test_heap_push_and_pop);
     suite_add_tcase(s, tc_core);
-
-    // /* Limits test case */
-    //tc_limits = tcase_create("Limits");
-
-    //tcase_add_test(tc_limits, test_money_create_neg);
-    //tcase_add_test(tc_limits, test_money_create_zero);
-    //suite_add_tcase(s, tc_limits);
 
     return s;
 }

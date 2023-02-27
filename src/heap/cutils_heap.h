@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -19,3 +23,7 @@ static inline bool cutils_heap_is_empty(cutils_heap_t const* heap) {
 void cutils_heap_push(cutils_heap_t* heap, void* elem);
 void const* cutils_heap_pop(cutils_heap_t* heap);
 void const* cutils_heap_peek(cutils_heap_t* heap);
+
+#ifdef __cplusplus
+}
+#endif
