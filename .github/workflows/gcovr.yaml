@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         uses: lyricwulf/abc@v1.2.0
         with:
-          linux: check
+          linux: check libaio-dev
 
       - name: Build and test this project
         run: |
